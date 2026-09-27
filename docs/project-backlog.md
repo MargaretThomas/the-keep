@@ -8,7 +8,7 @@
 - [x] **Create basic Vue app**  
   Initialise a minimal Vue 3 + Vite application inside `/code`.
 
-- [ ] **Create basic app layout**  
+- [x] **Create basic app layout**  
   Build the initial single-page structure for The Keep with space for importing, browsing, organising, and reviewing chats.
 
 - [ ] **Add simple navigation**  
