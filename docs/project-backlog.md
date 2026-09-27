@@ -11,7 +11,7 @@
 - [x] **Create basic app layout**  
   Build the initial single-page structure for The Keep with space for importing, browsing, organising, and reviewing chats.
 
-- [ ] **Add simple navigation**  
+- [x] **Add simple navigation**  
   Add lightweight navigation between the main areas of the app without introducing unnecessary routing complexity.
 
 - [ ] **Define local data structure**  
