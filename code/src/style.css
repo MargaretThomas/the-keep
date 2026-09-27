@@ -122,12 +122,16 @@ a:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   min-height: 40px;
   margin-bottom: 3px;
   padding: 0 10px;
+  border: 0;
   border-radius: 5px;
   color: #3f4b4e;
+  background: transparent;
   font-size: 0.86rem;
+  text-align: left;
   text-decoration: none;
 }
 
@@ -226,6 +230,58 @@ a:focus-visible {
 }
 
 .library-panel { padding: 24px; }
+
+.section-placeholder {
+  display: grid;
+  grid-column: 1 / -1;
+  min-height: 430px;
+  place-items: center;
+  align-content: center;
+  padding: 48px 24px;
+  border: 1px solid #dce3e3;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgb(20 58 60 / 4%);
+  text-align: center;
+}
+
+.placeholder-icon {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 18px;
+  place-items: center;
+  border-radius: 8px;
+  color: #0f6266;
+  background: #def3f1;
+  font-size: 1.15rem;
+  font-weight: 750;
+}
+
+.section-placeholder h2 {
+  margin: 5px 0 8px;
+  color: #1b292c;
+  font-size: 1.45rem;
+  letter-spacing: -0.025em;
+}
+
+.section-placeholder > p:not(.eyebrow) {
+  max-width: 420px;
+  margin: 0;
+  color: #697578;
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.section-placeholder > span {
+  margin-top: 18px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: #4c628b;
+  background: #edf0fb;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
 
 .section-intro {
   display: flex;

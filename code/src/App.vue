@@ -1,13 +1,20 @@
 <script setup>
+import { computed, ref } from 'vue'
+
 const navigation = [
-  { label: 'All Chats', count: 24, active: true },
-  { label: 'Projects', count: 4 },
-  { label: 'Unreviewed', count: 9 },
-  { label: 'Keep', count: 8 },
-  { label: 'Move', count: 4 },
-  { label: 'Archive', count: 2 },
-  { label: 'Delete', count: 1 },
+  { label: 'All Chats', count: 24, description: 'Browse every conversation in your library.' },
+  { label: 'Projects', count: 4, description: 'View conversations grouped by project.' },
+  { label: 'Unreviewed', count: 9, description: 'Work through conversations waiting for review.' },
+  { label: 'Keep', count: 8, description: 'See the conversations you decided to keep.' },
+  { label: 'Move', count: 4, description: 'Review conversations marked for another project.' },
+  { label: 'Archive', count: 2, description: 'Find conversations set aside for later.' },
+  { label: 'Delete', count: 1, description: 'Review conversations marked for deletion.' },
 ]
+
+const activeSection = ref('All Chats')
+const selectedSection = computed(() =>
+  navigation.find((item) => item.label === activeSection.value),
+)
 
 const projects = [
   { name: 'Product research', colour: 'teal' },
@@ -63,20 +70,21 @@ const conversations = [
       <aside class="sidebar">
         <nav aria-label="Conversation views">
           <p class="sidebar-label">Library</p>
-          <a
+          <button
             v-for="item in navigation"
             :key="item.label"
-            href="#"
+            type="button"
             class="nav-item"
-            :class="{ active: item.active }"
-            @click.prevent
+            :class="{ active: activeSection === item.label }"
+            :aria-current="activeSection === item.label ? 'page' : undefined"
+            @click="activeSection = item.label"
           >
             <span class="nav-name">
               <span class="nav-dot" aria-hidden="true"></span>
               {{ item.label }}
             </span>
             <span class="nav-count">{{ item.count }}</span>
-          </a>
+          </button>
         </nav>
 
         <section class="projects" aria-labelledby="projects-title">
@@ -94,7 +102,8 @@ const conversations = [
       </aside>
 
       <main class="main-area">
-        <section class="library-panel" aria-labelledby="library-title">
+        <template v-if="activeSection === 'All Chats'">
+          <section class="library-panel" aria-labelledby="library-title">
           <div class="section-intro">
             <div>
               <p class="eyebrow">Your library</p>
@@ -167,9 +176,9 @@ const conversations = [
               </span>
             </article>
           </div>
-        </section>
+          </section>
 
-        <aside class="review-panel" aria-labelledby="review-title">
+          <aside class="review-panel" aria-labelledby="review-title">
           <div class="review-heading">
             <div>
               <p class="eyebrow">Selected chat</p>
@@ -223,7 +232,16 @@ const conversations = [
             <button class="secondary-button" type="button">Skip for now</button>
             <button class="primary-button" type="button">Mark reviewed</button>
           </div>
-        </aside>
+          </aside>
+        </template>
+
+        <section v-else class="section-placeholder" aria-labelledby="section-title">
+          <div class="placeholder-icon" aria-hidden="true">{{ selectedSection.label.charAt(0) }}</div>
+          <p class="eyebrow">Library section</p>
+          <h2 id="section-title">{{ selectedSection.label }}</h2>
+          <p>{{ selectedSection.description }}</p>
+          <span>{{ selectedSection.count }} placeholder items</span>
+        </section>
       </main>
     </div>
   </div>
